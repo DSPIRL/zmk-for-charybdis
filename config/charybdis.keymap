@@ -13,6 +13,7 @@
     quick-tap-ms = <150>;
 };
 
+/ {
     behaviors {
         td_lalt_sym: tap_dance_lalt_sym {
             compatible = "zmk,behavior-tap-dance";
@@ -35,6 +36,7 @@
             bindings = <&to 1>, <&to 5>;
         };
     };
+};
 
 / {
     keymap {
