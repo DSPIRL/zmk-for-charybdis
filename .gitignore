@@ -2,11 +2,11 @@
 .DS_Store
 
 # West / Zephyr workspace state
-.west/
-build/
-zmk/
-zephyr/
-modules/
+/.west/
+/build/
+/zmk/
+/zephyr/
+/modules/
 
 # Nested git repos
 **/.git/
