@@ -43,7 +43,7 @@ jobs:
           artifact_name: ${{ matrix.artifact-name }}
           snippet: ${{ matrix.snippet }}
         run: |
-          base_dir="${TMPDIR:-/tmp}/zmk-config"
+          base_dir="$(mktemp -d)"
           mkdir -p "${base_dir}/config"
           cp -R config/. "${base_dir}/config/"
 
@@ -53,7 +53,7 @@ jobs:
 
           echo "base_dir=${base_dir}" >> "$GITHUB_ENV"
           echo "extra_west_args=${extra_west_args}" >> "$GITHUB_ENV"
-          echo "extra_cmake_args=${shield:+-DSHIELD=\"$shield\"}" >> "$GITHUB_ENV"
+          echo "extra_cmake_args=-DZMK_EXTRA_MODULES=\"${base_dir}/config\" ${shield:+-DSHIELD=\"$shield\"}" >> "$GITHUB_ENV"
           echo "display_name=${shield:+$shield - }${board}" >> "$GITHUB_ENV"
           echo "artifact_name=${artifact_name:-${shield:+$shield-}${board}-zmk}" >> "$GITHUB_ENV"
 
